@@ -1,12 +1,20 @@
 // @flow
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
-import * as actions from '../actions';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { push } from "react-router-redux";
+import * as actions from "../actions";
 
 class Home extends Component {
+  componentDidMount() {
+    // var host = window.location.origin.replace(/^http/, "ws");
+    var ws = new WebSocket("ws://atlas-server.herokuapp.com");
+    ws.onmessage = function(event) {
+      console.log(event.data);
+    };
+  }
+
   renderButton() {
     if (this.props.fortest) {
       return (
@@ -28,7 +36,7 @@ class Home extends Component {
             <p>
               透過 react-router-redux 套件的 {"store.dispatch(push('/port')"} 切換分頁
             </p>
-            <button onClick={() => this.context.store.dispatch(push('/port'))}>
+            <button onClick={() => this.context.store.dispatch(push("/port"))}>
               port
             </button>
           </li>
@@ -47,7 +55,7 @@ class Home extends Component {
 }
 
 Home.contextTypes = {
-  store: PropTypes.object.isRequired,
+  store: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state) {

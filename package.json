@@ -15,7 +15,9 @@
     "react-router-dom": "^4.1.1",
     "react-router-redux": "^5.0.0-alpha.6",
     "react-tap-event-plugin": "^2.0.1",
-    "redux": "^3.6.0"
+    "redux": "^3.6.0",
+    "express": "^4.4.5",
+    "ws": "0.4.x"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
@@ -30,11 +32,17 @@
     "npm-run-all": "^4.0.2",
     "react-scripts": "1.0.7"
   },
+  "engines": {
+    "node": "0.10.x"
+  },
+  "proxy": "http://localhost:3001",
   "scripts": {
+    "node-start": "node src/index2.js",
     "build-css": "node-sass-chokidar src/scss -o src/style",
-    "watch-css": "npm run build-css && node-sass-chokidar src/scss -o src/style --watch --recursive",
+    "watch-css":
+      "npm run build-css && node-sass-chokidar src/scss -o src/style --watch --recursive",
     "start-js": "react-scripts start",
-    "start": "npm-run-all -p watch-css start-js",
+    "start": "npm-run-all -p watch-css start-js node-start",
     "build": "npm run build-css && react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
