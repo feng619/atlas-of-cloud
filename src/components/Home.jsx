@@ -5,14 +5,15 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { push } from "react-router-redux";
 import * as actions from "../actions";
+import { domain } from "./variables/variables";
 
 class Home extends Component {
   componentDidMount() {
-    // var host = window.location.origin.replace(/^http/, "ws");
-    var ws = new WebSocket("ws://atlas-server.herokuapp.com");
-    ws.onmessage = function(event) {
-      console.log(event.data);
-    };
+    // var host = domain.replace(/^http/, "ws");
+    // var ws = new WebSocket("ws://atlas-server.herokuapp.com");
+    // ws.onmessage = function(event) {
+    //   console.log(event.data);
+    // };
   }
 
   renderButton() {
